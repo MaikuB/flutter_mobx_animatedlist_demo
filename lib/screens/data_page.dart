@@ -24,10 +24,13 @@ class _DataPageState extends State<DataPage> {
     super.initState();
     widget.store.items.observe((listChange) {
       if (listChange.added?.isNotEmpty ?? false) {
+        // an item has been added, synchronise the items displayed within the AnimatedList with the items within an our store
         _listKey.currentState.insertItem(listChange.index - 1);
       }
       if (listChange.removed?.isNotEmpty ?? false) {
-        // when removing the AnimatedList will play the animation in reverse (left to right) for us so can reuse the same tween for adding in items
+        // an item has been removed, synchronise the items displayed within the AnimatedList with the items within an our store.
+        // note that when removing the AnimatedList will play the animation in reverse (left to right) for us so can reuse the
+        // same tween for adding in items
         _listKey.currentState.removeItem(
             listChange.index,
             (context, animation) => SlideTransition(
