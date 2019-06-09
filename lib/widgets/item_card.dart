@@ -11,15 +11,22 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Text('Item added at ${_item.dateAdded.toIso8601String()}'),
-      trailing: RaisedButton(
-          child: Text('Remove'),
-          onPressed: _removable
-              ? () {
-                  Provider.of<DataStore>(context).removeItem(_item);
-                }
-              : null),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: [
+          Expanded(
+              child:
+                  Text('Item added at ${_item.dateAdded.toIso8601String()}')),
+          RaisedButton(
+              child: Text('Remove'),
+              onPressed: _removable
+                  ? () {
+                      Provider.of<DataStore>(context).removeItem(_item);
+                    }
+                  : null),
+        ],
+      ),
     );
   }
 }
