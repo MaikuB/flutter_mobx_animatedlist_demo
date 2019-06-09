@@ -55,11 +55,11 @@ class _DataPageState extends State<DataPage> {
                 ),
           ),
         ),
-        Observer(
-          builder: (_) => Padding(
-                padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 8.0),
-                child: Text('${widget.store.items.length} items(s)'),
-              ),
+        Padding(
+          padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 8.0),
+          child: Observer(
+            builder: (_) => Text('${widget.store.items.length} items(s)'),
+          ),
         ),
       ]),
       floatingActionButton: FloatingActionButton(
