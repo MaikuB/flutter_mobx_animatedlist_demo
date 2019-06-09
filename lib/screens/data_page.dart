@@ -12,6 +12,7 @@ class DataPage extends StatefulWidget {
 
 class _DataPageState extends State<DataPage> {
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
+  // This tween with the slide transition will cause the item to slide from right to left into the list
   final Tween<Offset> _tween = Tween<Offset>(
     begin: Offset(1.0, 0.0),
     end: Offset.zero,
@@ -25,6 +26,7 @@ class _DataPageState extends State<DataPage> {
         _listKey.currentState.insertItem(listChange.index - 1);
       }
       if (listChange.removed?.isNotEmpty ?? false) {
+        // when removing the AnimatedList will play the animation in reverse (left to right) for us so can reuse the same tween for adding in items
         _listKey.currentState.removeItem(
             listChange.index,
             (context, animation) => SlideTransition(

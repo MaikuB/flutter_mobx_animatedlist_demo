@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import '../models/item.dart';
 import '../stores/data_store.dart';
 
+/// Used for rendering each item in the list.
+/// Displays information on when each item was added along with a remove button.
 class ItemCard extends StatelessWidget {
   final Item _item;
   final bool _removable;
