@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx_animatedlist_demo/widgets/item_card.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import '../widgets/item_card.dart';
 import '../stores/data_store.dart';
 
 class DataPage extends StatefulWidget {
@@ -43,14 +44,24 @@ class _DataPageState extends State<DataPage> {
       appBar: AppBar(
         title: Text('Animated List demo'),
       ),
-      body: AnimatedList(
-        key: _listKey,
-        initialItemCount: 0,
-        itemBuilder: (context, index, animation) => SlideTransition(
-              position: animation.drive(_tween),
-              child: ItemCard(widget.store.items[index], true),
-            ),
-      ),
+      body: Column(children: [
+        Expanded(
+          child: AnimatedList(
+            key: _listKey,
+            initialItemCount: 0,
+            itemBuilder: (context, index, animation) => SlideTransition(
+                  position: animation.drive(_tween),
+                  child: ItemCard(widget.store.items[index], true),
+                ),
+          ),
+        ),
+        Observer(
+          builder: (_) => Padding(
+                padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 8.0),
+                child: Text('${widget.store.items.length} items(s)'),
+              ),
+        ),
+      ]),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           widget.store.addItem();
