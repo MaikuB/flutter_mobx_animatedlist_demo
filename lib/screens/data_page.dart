@@ -61,7 +61,7 @@ class _DataPageState extends State<DataPage> {
         Padding(
           padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 8.0),
           child: Observer(
-            builder: (_) => Text('${widget.store.items.length} items(s)'),
+            builder: (_) => Text(widget.store.itemsFooter),
           ),
         ),
       ]),

@@ -9,6 +9,10 @@ abstract class _DataStore with Store {
   @observable
   ObservableList<Item> items = ObservableList<Item>();
 
+  @computed
+  String get itemsFooter =>
+      "${items.length} ${(items.length == 1) ? 'item' : 'items'}";
+
   @action
   void addItem() {
     items.add(Item(DateTime.now().toUtc()));

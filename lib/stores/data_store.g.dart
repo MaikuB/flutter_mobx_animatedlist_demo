@@ -9,6 +9,13 @@ part of 'data_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars
 
 mixin _$DataStore on _DataStore, Store {
+  Computed<String> _$itemsFooterComputed;
+
+  @override
+  String get itemsFooter =>
+      (_$itemsFooterComputed ??= Computed<String>(() => super.itemsFooter))
+          .value;
+
   final _$itemsAtom = Atom(name: '_DataStore.items');
 
   @override
