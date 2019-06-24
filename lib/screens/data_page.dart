@@ -25,7 +25,7 @@ class _DataPageState extends State<DataPage> {
     widget.store.items.observe((listChange) {
       if (listChange.added?.isNotEmpty ?? false) {
         // an item has been added, synchronise the items displayed within the AnimatedList with the items within an our store
-        _listKey.currentState.insertItem(listChange.index - 1);
+        _listKey.currentState.insertItem(listChange.index);
       }
       if (listChange.removed?.isNotEmpty ?? false) {
         // an item has been removed, synchronise the items displayed within the AnimatedList with the items within an our store.

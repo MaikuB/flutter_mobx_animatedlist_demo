@@ -20,13 +20,14 @@ mixin _$DataStore on _DataStore, Store {
 
   @override
   ObservableList<Item> get items {
+    _$itemsAtom.context.enforceReadPolicy(_$itemsAtom);
     _$itemsAtom.reportObserved();
     return super.items;
   }
 
   @override
   set items(ObservableList<Item> value) {
-    _$itemsAtom.context.checkIfStateModificationsAreAllowed(_$itemsAtom);
+    _$itemsAtom.context.enforceWritePolicy(_$itemsAtom);
     super.items = value;
     _$itemsAtom.reportChanged();
   }
